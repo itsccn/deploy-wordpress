@@ -6,3 +6,5 @@
 3. 修改 nginx/nginx.conf server_name 改为自己的ip或者域名 （如果需要https 放开443端口 在cert文件夹放入自己的证书）
 4. 修改 `docker-compose.yml` 文件 定义数据库相关信息
 5. 执行 docker-compose up -d
+
+更多信息请访问 https://itsccn.tech/2020/12/16/deploy-wordpress/ 查看
