@@ -1,0 +1,8 @@
+[client]
+default-character-set=utf8mb4
+[mysql]
+default-character-set=utf8mb4
+[mysqld]
+key_buffer_size = 128M
+max_connections = 150
+innodb_buffer_pool_size = 256M
