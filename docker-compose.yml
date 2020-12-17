@@ -13,7 +13,7 @@ services:
         - db
       volumes:
         - ./wordpress:/var/www/html
-        - ./wordpress/custom.php.ini:/usr/local/etc/php/conf.d/custom.php.ini
+        - ./php/custom.php.ini:/usr/local/etc/php/conf.d/custom.php.ini
       restart: always
     db:
       container_name: db
