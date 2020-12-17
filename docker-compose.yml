@@ -1,34 +1,38 @@
-﻿
 version: '3.3'
 
 services:
     wordpress:
-        container_name: wordpress
-        image: wordpress:5.6.0-php7.4-apache
-        depends_on:
+      container_name: wordpress
+      image: wordpress:5.6.0-php7.4-apache
+      environment:
+        WORDPRESS_DB_HOST: wordpress
+        WORDPRESS_DB_USER: wp
+        WORDPRESS_DB_PASSWORD: pass123
+        WORDPRESS_DB_NAME: db
+      depends_on:
         - db
-        volumes:
+      volumes:
         - ./wordpress:/var/www/html
         - ./wordpress/custom.php.ini:/usr/local/etc/php/conf.d/custom.php.ini
-        restart: always
+      restart: always
     db:
-        container_name: db
-        build: ./mysql
-        environment:
-          MYSQL_ROOT_PASSWORD: "a831d895eswa23526"
-          MYSQL_ROOT_HOST: "%"
-          MYSQL_DATABASE: "wordpress"
-          MYSQL_USER: "wp"
-          MYSQL_PASSWORD: "pass123"
-        restart: always
+      container_name: db
+      build: ./mysql
+      environment:
+        MYSQL_ROOT_PASSWORD: "a831d895eswa23526"
+        MYSQL_ROOT_HOST: "%"
+        MYSQL_DATABASE: "wordpress"
+        MYSQL_USER: "wp"
+        MYSQL_PASSWORD: "pass123"
+      restart: always
     nginx:
-        container_name: nginx
-        image: nginx:1.19.6
-        volumes:
+      container_name: nginx
+      image: nginx:1.19.6
+      volumes:
         - ./nginx/nginx.conf:/etc/nginx/nginx.conf
         - ./nginx/cert:/etc/nginx/cert
         - ./wordpress:/etc/nginx/static/
-        ports:
+      ports:
         - "80:80"
         - "443:443"
-        restart: always
+      restart: always
